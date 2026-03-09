@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUPRA Restaurant | Soul of South</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="music-player" id="music-player">
+        <i class="fas fa-compact-disc record-icon"></i>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="discount-banner">
+        <marquee scrollamount="8">🔥 SEASONAL OFFER: Enjoy 20% OFF on all Mandi & Biryani dishes this weekend! Use Code: SUPRA20 at Checkout. 🔥</marquee>
+    </div>
+
+    <div id="offer-modal" class="modal">
+        <div class="modal-content text-center" style="width: 350px;">
+            <span class="close-modal">&times;</span>
+            <h2 style="color: var(--gold); font-size: 2rem; margin-bottom: 10px;">Lucky Draw!</h2>
+            <p style="margin-bottom: 15px;">Scratch below to reveal your welcome offer!</p>
+            <div class="scratch-container" id="scratch-container">
+                <div class="scratch-code">
+                    <h1 style="color: var(--gold); font-size: 2.5rem;">50% OFF</h1>
+                    <p style="font-size: 0.8rem;">Code: FIRSTSUPRA</p>
+                </div>
+                <canvas id="scratch-card"></canvas>
+            </div>
+            <button class="btn-solid" id="claim-offer-btn" style="margin-top: 20px; display: none; width: 100%;">Claim My Discount</button>
+        </div>
+    </div>
+
+    <div id="tracking-modal" class="modal">
+        <div class="modal-content text-center">
+            <span class="close-tracking" id="close-tracking">&times;</span>
+            <h2 style="color: var(--gold); font-size: 2.5rem; margin-bottom: 10px;">Order Placed! 🎉</h2>
+            <p style="margin-bottom: 30px; color: var(--text-main);">Tracking your delicious food live:</p>
+            <div class="tracking-container">
+                <div class="track-step active" id="track-step-1"><div class="icon-circle"><i class="fas fa-fire"></i></div><p>Preparing 😍</p></div>
+                <div class="track-line" id="line-1"></div>
+                <div class="track-step" id="track-step-2"><div class="icon-circle"><i class="fas fa-box"></i></div><p>Packing 📦</p></div>
+                <div class="track-line" id="line-2"></div>
+                <div class="track-step" id="track-step-3"><div class="icon-circle"><i class="fas fa-motorcycle"></i></div><p>Out for Delivery 🚀</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="splash-screen"><div class="splash-logo">SS</div></div>
+
+    <nav class="navbar">
+        <div class="brand-container">
+            <div class="golden-ss">SS</div>
+            <div class="brand-name">SUPRA Restaurant<span>Soul of South</span></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Reservation</a></li>
+        </ul>
+        <div class="nav-icons" style="display: flex; gap: 20px; align-items: center;">
+            <div class="theme-toggle" id="theme-toggle" style="cursor: pointer; font-size: 1.5rem; color: var(--gold);"><i class="fas fa-sun"></i></div>
+            <div class="nav-contact" id="cart-icon"><i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span></div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1500">
+            <span class="subtitle" id="hero-greeting">A CULINARY EXPERIENCE</span>
+            <h1>SUPRA Restaurant</h1>
+            <p id="hero-subtext">Authentic Madurai Flavors. Elevated.</p>
+            <a href="#menu" class="btn-outline">Order Now</a>
+        </div>
+    </header>
+
+    <section id="menu" class="luxury-menu">
+        <div class="menu-header" data-aos="fade-down"><span class="subtitle">TASTE THE MAGIC</span><h2>Our Menus</h2></div>
+        <div class="menu-container">
+            
+            <h3 class="category-title" data-aos="fade-right">Small Bites</h3>
+            <div class="menu-grid">
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/grill_chicken.jpg');"></div><div class="menu-overlay"><span class="menu-title">Grill Chicken</span><span class="menu-price">₹250</span><button class="add-cart-btn" data-name="Grill Chicken" data-price="250">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Tandoori.jpg');"></div><div class="menu-overlay"><span class="menu-title">Tandoori Chicken</span><span class="menu-price">₹280</span><button class="add-cart-btn" data-name="Tandoori" data-price="280">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/BBQ.jpg');"></div><div class="menu-overlay"><span class="menu-title">BBQ Chicken</span><span class="menu-price">₹300</span><button class="add-cart-btn" data-name="BBQ" data-price="300">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/shawarma.jpg');"></div><div class="menu-overlay"><span class="menu-title">Shawarma</span><span class="menu-price">₹120</span><button class="add-cart-btn" data-name="Shawarma" data-price="120">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Pepper_chicken.jpg');"></div><div class="menu-overlay"><span class="menu-title">Pepper Chicken</span><span class="menu-price">₹220</span><button class="add-cart-btn" data-name="Pepper Chicken" data-price="220">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Mejira_Chicken.jpg');"></div><div class="menu-overlay"><span class="menu-title">Mejira Chicken</span><span class="menu-price">₹260</span><button class="add-cart-btn" data-name="Mejira Chicken" data-price="260">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Mint_Chicken.jpg');"></div><div class="menu-overlay"><span class="menu-title">Mint Chicken</span><span class="menu-price">₹240</span><button class="add-cart-btn" data-name="Mint Chicken" data-price="240">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Mutton_chukka.jpg');"></div><div class="menu-overlay"><span class="menu-title">Mutton Chukka</span><span class="menu-price">₹290</span><button class="add-cart-btn" data-name="Mutton Chukka" data-price="290">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Fish_Fingers.jpg');"></div><div class="menu-overlay"><span class="menu-title">Fish Fingers</span><span class="menu-price">₹270</span><button class="add-cart-btn" data-name="Fish Fingers" data-price="270">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Prawn_65.jpg');"></div><div class="menu-overlay"><span class="menu-title">Prawn 65</span><span class="menu-price">₹310</span><button class="add-cart-btn" data-name="Prawn 65" data-price="310">Add to Cart</button></div></div>
+            </div>
+
+            <h3 class="category-title" style="margin-top: 80px;" data-aos="fade-right">Main Course</h3>
+            <div class="menu-grid">
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/mutton_biryani.jpg');"></div><div class="menu-overlay"><span class="menu-title">Mutton Biryani</span><span class="menu-price">₹350</span><button class="add-cart-btn" data-name="Mutton Biryani" data-price="350">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/chicken_biryani.jpg');"></div><div class="menu-overlay"><span class="menu-title">Chicken Biryani</span><span class="menu-price">₹250</span><button class="add-cart-btn" data-name="Chicken Biryani" data-price="250">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Special_SS_biryani.jpg');"></div><div class="menu-overlay"><span class="menu-title">Special SS Biryani</span><span class="menu-price">₹380</span><button class="add-cart-btn" data-name="SS Biryani" data-price="380">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Non_veg_meals.jpg');"></div><div class="menu-overlay"><span class="menu-title">Non-Veg Meals</span><span class="menu-price">₹200</span><button class="add-cart-btn" data-name="Non-Veg Meals" data-price="200">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Ghee_rice_with_chicken_Gravy_combo.jpg');"></div><div class="menu-overlay"><span class="menu-title">Ghee Rice Combo</span><span class="menu-price">₹280</span><button class="add-cart-btn" data-name="Ghee Rice Combo" data-price="280">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/chicken_mandi.jpg');"></div><div class="menu-overlay"><span class="menu-title">Chicken Mandi</span><span class="menu-price">₹450</span><button class="add-cart-btn" data-name="Chicken Mandi" data-price="450">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/mutton_mandi.jpg');"></div><div class="menu-overlay"><span class="menu-title">Mutton Mandi</span><span class="menu-price">₹550</span><button class="add-cart-btn" data-name="Mutton Mandi" data-price="550">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/Kizhi_Parotta.jpg');"></div><div class="menu-overlay"><span class="menu-title">Kizhi Parotta</span><span class="menu-price">₹180</span><button class="add-cart-btn" data-name="Kizhi Parotta" data-price="180">Add to Cart</button></div></div>
+            </div>
+
+            <h3 class="category-title" style="margin-top: 80px;" data-aos="fade-right">Desserts & Drinks</h3>
+            <div class="menu-grid">
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/mojito.jpg');"></div><div class="menu-overlay"><span class="menu-title">Mojito</span><span class="menu-price">₹90</span><button class="add-cart-btn" data-name="Mojito" data-price="90">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/jigarthanda.jpg');"></div><div class="menu-overlay"><span class="menu-title">Jigarthanda</span><span class="menu-price">₹110</span><button class="add-cart-btn" data-name="Jigarthanda" data-price="110">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/watermelon_juice.jpg');"></div><div class="menu-overlay"><span class="menu-title">Watermelon Juice</span><span class="menu-price">₹70</span><button class="add-cart-btn" data-name="Watermelon Juice" data-price="70">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/musk_melon_juice.jpg');"></div><div class="menu-overlay"><span class="menu-title">Musk Melon Juice</span><span class="menu-price">₹80</span><button class="add-cart-btn" data-name="Musk Melon Juice" data-price="80">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/mixed_fruit_juice_with_icecream.jpg');"></div><div class="menu-overlay"><span class="menu-title">Mixed Fruit Icecream</span><span class="menu-price">₹140</span><button class="add-cart-btn" data-name="Mixed Fruit Icecream" data-price="140">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/orange_juice.jpg');"></div><div class="menu-overlay"><span class="menu-title">Orange Juice</span><span class="menu-price">₹80</span><button class="add-cart-btn" data-name="Orange Juice" data-price="80">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/gulab_jamun.jpg');"></div><div class="menu-overlay"><span class="menu-title">Gulab Jamun</span><span class="menu-price">₹60</span><button class="add-cart-btn" data-name="Gulab Jamun" data-price="60">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/rasagulla.jpg');"></div><div class="menu-overlay"><span class="menu-title">Rasagulla</span><span class="menu-price">₹60</span><button class="add-cart-btn" data-name="Rasagulla" data-price="60">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/rasamalai.jpg');"></div><div class="menu-overlay"><span class="menu-title">Rasa Malai</span><span class="menu-price">₹80</span><button class="add-cart-btn" data-name="Rasa Malai" data-price="80">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/coffee.jpg');"></div><div class="menu-overlay"><span class="menu-title">Coffee</span><span class="menu-price">₹40</span><button class="add-cart-btn" data-name="Coffee" data-price="40">Add to Cart</button></div></div>
+                <div class="menu-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-aos="fade-up"><div class="menu-img" style="background-image: url('images/softdrinks.jpg');"></div><div class="menu-overlay"><span class="menu-title">Soft Drinks</span><span class="menu-price">₹40</span><button class="add-cart-btn" data-name="Soft Drinks" data-price="40">Add to Cart</button></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+        <div class="menu-header" data-aos="fade-down"><span class="subtitle">CRITICS CHOICE</span><h2>Guest Experiences</h2></div>
+        <div class="review-slider" id="review-display" data-aos="fade-up">
+            <div class="review-slide active"><div class="stars">★★★★★</div><p>"The finest dining experience! The SS Biryani is an absolute masterpiece."</p><h4>- Foodie Express</h4></div>
+            <div class="review-slide"><div class="stars">★★★★☆</div><p>"World-class service, and food that touches your soul. SUPRA is a must-visit."</p><h4>- The Culinary Times</h4></div>
+        </div>
+        <button class="btn-outline" id="write-review-btn" style="margin-top: 40px;" data-aos="fade-up">Write a Review</button>
+    </section>
+
+    <div id="review-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-review">&times;</span>
+            <h2 style="color: var(--gold); margin-bottom: 20px;">Rate Your Experience</h2>
+            <div class="interactive-stars" id="star-rating">
+                <i class="fas fa-star" data-value="1"></i><i class="fas fa-star" data-value="2"></i><i class="fas fa-star" data-value="3"></i><i class="fas fa-star" data-value="4"></i><i class="fas fa-star" data-value="5"></i>
+            </div>
+            <input type="text" id="reviewer-name" placeholder="Your Name" style="width: 100%; padding: 10px; margin: 20px 0; background: transparent; border: 1px solid var(--text-muted); color: var(--text-main);">
+            <textarea id="review-text" rows="4" placeholder="Tell us about your food..." style="width: 100%; padding: 10px; background: transparent; border: 1px solid var(--text-muted); color: var(--text-main);"></textarea>
+            <button class="btn-solid" id="submit-review-btn" style="width: 100%; margin-top: 20px;">Submit Review</button>
+        </div>
+    </div>
+
+    <section id="contact" class="reservation-section">
+        <div class="reservation-container" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="res-text">
+                <span class="subtitle">BOOK YOUR TABLE</span>
+                <h2>Visual Reservation</h2>
+                <p>Select your favorite spot directly from our restaurant map.</p>
+                <div class="visual-map">
+                    <div class="table window-table" data-table="Window Seat 1">Window 1<br>(2 Pax)</div>
+                    <div class="table window-table" data-table="Window Seat 2">Window 2<br>(2 Pax)</div>
+                    <div class="table vip-table" data-table="VIP Lounge">VIP Lounge<br>(6 Pax)</div>
+                    <div class="table standard-table" data-table="Center Table 1">Center 1<br>(4 Pax)</div>
+                    <div class="table standard-table" data-table="Center Table 2">Center 2<br>(4 Pax)</div>
+                </div>
+            </div>
+            <div class="res-form">
+                <form id="bookingForm">
+                    <input type="text" id="selected-table-input" placeholder="Selected Table (Click Map)" readonly required style="color: var(--gold); font-weight: bold;">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="tel" placeholder="Phone Number" required>
+                    <div class="form-row"><input type="date" required><input type="time" required></div>
+                    <button type="submit" class="btn-solid">Confirm Reservation</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="luxury-footer">
+        <h2 style="color: var(--gold); font-family: 'Cormorant Garamond', serif;">SS.</h2>
+        <p>&copy; 2026 SUPRA Restaurant. All rights reserved.</p>
+    </footer>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header"><h3>Your Order</h3><i class="fas fa-times" id="close-cart"></i></div>
+        <div class="cart-items" id="cart-items"><p style="color: #888; text-align: center; margin-top: 50px;">Your cart is empty.</p></div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: ₹<span id="total-price">0</span></div>
+            <button class="btn-solid" style="width: 100%; margin-top: 15px;" id="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <div class="ai-bot-btn" id="ai-bot-btn"><i class="fas fa-robot"></i></div>
+    <div class="ai-bot-window" id="ai-bot-window">
+        <div class="ai-header">
+            <h4><i class="fas fa-magic"></i> SUPRA AI Assistant</h4>
+            <i class="fas fa-times" id="close-ai" style="cursor: pointer;"></i>
+        </div>
+        <div class="ai-body" id="ai-body">
+            <p class="bot-msg">Hi! How are you feeling today? (e.g., sad, happy, tired, hungry, chill)</p>
+        </div>
+        <div class="ai-footer">
+            <input type="text" id="ai-input" placeholder="Type your mood...">
+            <button id="ai-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
